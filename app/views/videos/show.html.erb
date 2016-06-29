@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<h1><%= @video.title%>  <small><%= @video.description%></small></h1>
+
+			<%= video_tag(@video.video_url, width:"100%", controls: true, autobuffer: false,poster:"1.jpg") %>
+			<br/><br/>
+			<table class="table table-striped">
+			<thead>
+				<tr>
+				<th>评论 
+				<span class="badge">
+					<%= @video.comments.count%>
+				</span>
+				
+				</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				
+				<% @comments.each do |comment| %>
+				 <%if comment.video_id==@video.id%>
+				 <tr>
+				<td>
+					<div class="media-body">
+						<p><h5><%= comment.user_email%> <small><%= time_tag comment.updated_at %></small>
+						<% if comment.user_email==current_user.email %>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+						<%= link_to '刪除', comment, method: :delete, data: { confirm: 'Are you sure?' }%>  
+						<% end %>
+						</h5>  </p> 
+						<h4><%= comment.content%></h4>
+					</div>
+				</td>
+				</tr>
+				<% end %>
+				<% end %>
+				
+			</tbody>
+			</table>
+
+			<div class="">
+			<% if user_signed_in? %>
+			<%= form_for(@comment) do |f| %>
+			  <div class="field">
+			    
+			    <%= f.text_field :content, class:"form-control"%>
+			  </div>
+			  <div class="field" style="display: none">
+			    <%= f.label :video_id %><br>
+			    <%= f.text_field :video_id %>
+			  </div>
+			  <div class="actions">
+			    <%= f.submit '评论',class:"btn btn-success"%>
+			  </div>
+			<% end %>
+			<% else %>
+			<div class="container">
+				<h4><font color="red"> 请<%= link_to '登陆', new_user_session_path %>后评论</font></h4> 
+			</div>
+			<% end %>
+			</div>
+
+		</div>
+	</div>
+
+
+
+																																																																																																					
+
+
+</div>

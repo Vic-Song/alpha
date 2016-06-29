@@ -1,0 +1,63 @@
+<div class="container">
+<!--<table class="table table-striped">
+<thead>
+	<tr>
+		<td>Course</td>
+		<td>Teacher</td>
+		<td>Description</td>
+		<td>Settings</td>
+	</tr>
+</thead>
+<tbody>
+	<% @courses.each do |c| %>
+	<tr>
+		<td><%= c.title %></td> 
+		<td><%= c.teacher %></td> 
+		<td><%= c.description %></td> 
+		<td><%= link_to 'Edit', edit_course_path(c),class:"btn btn-default" %> 
+		<%= link_to '删除', c,class:"btn btn-warning", method: :delete, data: { confirm: 'Are you sure?' } %> 
+		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		  Videos
+		</a>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>-->
+	<div class="page-header">
+	<h2>课程管理  &nbsp;&nbsp;&nbsp; <%= link_to '新建课程', new_course_path,class:"btn btn-default" %> </h2> 
+	
+	</div>
+	<div class="row">
+	<% @courses.each do |c| %>
+	
+	<div class="col-lg-4">
+	<div class="thumbnail">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+			<td><strong><%= c.title%></strong> </td>
+			<td></td>
+			<td><%= link_to '编辑', edit_course_path(c),class:"btn btn-default btn-sm" %> <%= link_to '删除', c,class:"btn btn-warning btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %> <%= link_to '新建视频', new_video_path(course_id:c.id),class:"btn btn-default btn-sm" %> </td>
+			 </tr>
+			</thead>
+			<tbody>
+			<% c.videos.each do |v| %>
+			<tr>
+			<td class="list-group-item-text"><%= v.title%> </td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td ><%= link_to '查看', v, class:"btn btn-default btn-sm" %> <%= link_to '编辑', edit_video_path(v), class:"btn btn-default btn-sm"%> <%= link_to '删除', v, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-warning btn-sm" %></td>
+			</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+	</div>
+		<% end %>
+
+	</div>
+
+
+
+
+</div>

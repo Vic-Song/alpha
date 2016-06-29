@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="page-header">
+			<h1>Home &nbsp&nbsp<small>Enterprise Management Courses</small></h1>
+	</div>
+	<div class="carousel slide" id="myCarousel">
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1" ></li>
+			<li data-target="#myCarousel" data-slide-to="2" ></li>
+		</ol>
+
+		<div class="carousel-inner">
+		      <div class="item active">
+		         <a href="/courses/1"><%= image_tag("1.jpg")%></a> 
+		      </div>
+		      <div class="item">
+		         <a href="/courses/1"><%= image_tag("2.jpg")%></a>
+		      </div>
+		      <div class="item">
+		         <a href="/courses/1"><%= image_tag("3.jpg")%></a>
+		      </div>
+		  </div>
+		   
+		   <a class="carousel-control left" href="#myCarousel" 
+		      data-slide="prev">&lsaquo;</a>
+		   <a class="carousel-control right" href="#myCarousel" 
+		      data-slide="next">&rsaquo;</a>
+	</div>
+
+	<div class="page-header">
+		<h1>About</h1>
+	</div>
+	<div class="jumbotron">
+		  <h1>Hello, Learners!</h1>
+		  <p>We are happy to announce that we have established a platform for your to learn...<more> and acquire some mangement knowledge here</p>
+		  <p><%= link_to 'Learn more',courses_path,class:"btn btn-primary btn-lg" %></p>
+	</div>
+
+	<div class="page-header">
+		<h1>Recommended Courses</h1>
+
+	</div>
+	 <div class="row">
+	      <% @courses.each do |course| %>
+	    <div class="col-sm-6 col-md-4">
+	      <div class="thumbnail">
+	        <%= image_tag("1.jpg")%>
+	        <div class="caption">
+	          <h3><%= course.title %></h3>
+	          <p><%= course.description %></p>
+	          <p><div align="right"><%= link_to 'View', course,class:"btn btn-default" %> </div></p>
+	        </div>
+	      </div>
+	    </div>
+	    <% end %>
+	  </div>
+
+
+</div>
